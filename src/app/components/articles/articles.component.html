@@ -1,0 +1,27 @@
+<div class="loading" *ngIf="!articles">
+	Cargando...
+</div>
+
+<div class="loading" *ngIf="articles && articles.length == 0">
+	No hay articulos para mostrar.
+</div>
+
+<div  id="articles" *ngIf="articles">
+	<article class="article-item"  *ngFor="let article of articles">
+		<div class="image-wrap">
+			<img src="{{urlApi + 'get-image/' + article.image}}" alt="{{article.title}}" *ngIf="article.image">
+			<img src="assets/images/default.jpg" alt="{{article.title}}" *ngIf="!article.image">
+		</div>
+
+		<h2>{{article.title}}</h2>
+		<span class="date">
+			{{article.date | amLocale: 'es' | amTimeAgo }}
+		</span>
+		<a [routerLink]="['/blog/articulo', article._id]">Leer mas</a> 
+		<!-- el segundo parametro que se le pasa a routerLink es el id del articulo al que se quiere acceder -->
+
+		<div class="clearfix"></div>
+	</article>
+
+
+</div>

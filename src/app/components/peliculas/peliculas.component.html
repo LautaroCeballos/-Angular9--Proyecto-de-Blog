@@ -1,0 +1,59 @@
+<app-slider	
+	[nombre]="'Peliculas'"
+	[size]="'small'"
+></app-slider>
+
+<div class="center">
+  	<section id="content">
+
+  		<div id="favorita" *ngIf="favorita">
+  			<h2 class="subheader">
+  				Pelicula Favorita
+  			</h2>
+  			<h4>
+  				{{favorita.title | uppercase}} <!-- Pipes -->
+  			</h4>
+			<h4>
+				{{favorita.year | espar }} <!-- Pipes Personalizadas -->
+			</h4>
+  			
+  		</div>
+
+<!-- 		
+		<h2 class="subheader">Peliculas</h2>
+
+
+		<h2>Numero de peliculas</h2>
+		<div *ngIf="peliculas.length <= 3">
+			Hay pocas peliculas
+		</div>
+		<div *ngIf="peliculas.length > 3">
+			Hay muchas peliculas
+		</div>
+
+		{{peliculas.length}}
+
+		<br> 
+-->
+
+		<h2 class="subheader">Listado de Peliculas</h2>
+		<div id="articles" *ngIf="peliculas">
+
+			<div *ngFor="let pelicula of peliculas; let i = index">
+			<!-- Por cada vuelta que de crear un objeto pelicula de peliculas -->
+			<!-- let i = index (Para acceder al indice en donde se esta parado -->
+
+				<app-pelicula
+					[pelicula]="pelicula"
+					(MarcarFavorita)="mostrarFavorita($event)"
+				></app-pelicula>
+
+			</div>
+			
+		</div>
+	</section>
+
+ 	<app-sidebar></app-sidebar>
+
+  	<div class="clearfix"></div>
+</div>
